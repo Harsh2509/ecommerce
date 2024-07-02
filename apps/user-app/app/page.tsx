@@ -1,7 +1,17 @@
-export default function Home() {
+import { User, db, users } from "@repo/database";
+
+async function getUserData() {
+  return db.select().from(users);
+}
+
+export default async function Home() {
+  const users = await getUserData();
+
   return (
-    <h1 className=" bg-slate-500 text-white text-2xl italic">
-      Testing tailwind here!
-    </h1>
+    <div>
+      {users.map((user) => {
+        return <p key={user.id}>{user.name}</p>;
+      })}
+    </div>
   );
 }
