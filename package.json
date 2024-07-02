@@ -5,7 +5,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:check": "turbo run db:check",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -19,5 +22,6 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {}
 }
