@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { TextEffect } from "../lib/TextEffect";
 import { InView } from "../lib/Inview";
+import { Button } from "@repo/ui/button";
 
 export const Home = () => {
   return (
@@ -29,13 +30,7 @@ export const Home = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link
-                  href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Shop Now
-                </Link>
+                <Button>Shop Now</Button>
               </div>
             </div>
           </div>
@@ -43,12 +38,17 @@ export const Home = () => {
         <InView
           variants={{
             hidden: { opacity: 0, y: 100, filter: "blur(4px)" },
-            visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+            visible: {
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+              transition: { duration: 0.5 },
+            },
           }}
           viewOptions={{ margin: "0px 0px -200px 0px" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+          <section className="w-full py-12 md:py-24 lg:py-32 bg-slate-200">
             <div className="flex flex-row-reverse justify-evenly items-center">
               <div className="group grid gap-2">
                 <img
