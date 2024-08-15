@@ -1,17 +1,19 @@
-import { User, db, users } from "@repo/database";
+import { Navbar } from "@repo/ui/navbar";
+import { Home } from "../components/Home";
 
-async function getUserData() {
-  return db.select().from(users);
-}
+// These are the links that will be displayed in the navbar
+const navigation = [
+  { name: "Sell", href: "#", current: true },
+  { name: "Extension", href: "#", current: false },
+  { name: "Resources", href: "#", current: false },
+  { name: "Enterprise Ecommerce", href: "#", current: false },
+];
 
-export default async function Home() {
-  const users = await getUserData();
-
+export default async function LandingPage() {
   return (
-    <div>
-      {users.map((user) => {
-        return <p key={user.id}>{user.name}</p>;
-      })}
-    </div>
+    <>
+      <Navbar navigation={navigation} />
+      <Home />
+    </>
   );
 }
