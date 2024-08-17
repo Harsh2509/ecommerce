@@ -10,6 +10,8 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { Logo } from "@repo/ui/logo";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -45,7 +47,7 @@ export const Navbar = ({
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <Logo />
+              <Logo classname="text-white" />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
@@ -67,12 +69,13 @@ export const Navbar = ({
               </div>
             </div>
           </div>
-          <button
+          <Link
             type="button"
             className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+            href="/login"
           >
             Login
-          </button>
+          </Link>
           <button className="bg-gray-800 p-1 text-gray-400 hover:text-white border-gray-400 hover:border-white border-spacing-2 border rounded-md mx-2 md:p-2 md:mx-2 hidden md:block">
             Create an account
           </button>
@@ -100,18 +103,5 @@ export const Navbar = ({
         </div>
       </DisclosurePanel>
     </Disclosure>
-  );
-};
-
-// Logo of our application is here.
-export const Logo = () => {
-  return (
-    <div className="flex items-center gap-2">
-      <a href="/">
-        <span className="text-3xl font-bold italic dark:text-white text-black">
-          WOO
-        </span>
-      </a>
-    </div>
   );
 };

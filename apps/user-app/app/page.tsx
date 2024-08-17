@@ -1,6 +1,5 @@
-import { Navbar } from "@repo/ui/navbar";
+import { Navbar } from "../components/Navbar";
 import { Home } from "../components/Home";
-
 // These are the links that will be displayed in the navbar
 const navigation = [
   { name: "Sell", href: "#", current: true },
