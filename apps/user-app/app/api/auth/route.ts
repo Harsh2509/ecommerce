@@ -10,8 +10,11 @@ export const POST = async (req: Request) => {
   // if user does not exist, create user
   if (userz.length === 0) {
     const hashedPw = await bcrypt.hash(password, 10);
-    await db.insert(users).values({ email, password: hashedPw });
-    return Response.json({ token: "xyz" });
+    const user = await db
+      .insert(users)
+      .values({ email, password: hashedPw })
+      .returning({ userId: users.id });
+    return Response.json({ token: "xyz", userId: user[0]?.userId });
   }
 
   // Checking user's password.
@@ -21,7 +24,7 @@ export const POST = async (req: Request) => {
       return Response.json({ error: "Invalid email or password" });
     }
     // We can definitely improve this by using JWT or something similar.
-    return Response.json({ token: "xyz" });
+    return Response.json({ token: "xyz", userId: userz[0].id });
   } else {
     return Response.json({ error: "Invalid email or password" });
   }

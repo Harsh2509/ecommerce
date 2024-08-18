@@ -7,7 +7,9 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./logo": "./src/logo.tsx",
-    "./carousel": "./src/carousel.tsx"
+    "./carousel": "./src/carousel.tsx",
+    "./alert": "./src/alert.tsx",
+    "./extendedCard": "./src/extendedCard.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -29,6 +31,7 @@
     "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
+    "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.28",

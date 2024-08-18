@@ -93,9 +93,9 @@ export const Navbar = ({
 
           {token && (
             <div className=" gap-2 flex">
-              <a>
+              <Link href="/cart">
                 <BsCart4 className=" text-slate-400 hover:text-white text-3xl cursor-pointer" />
-              </a>
+              </Link>
               <button
                 className="bg-gray-800 p-1 text-gray-400 hover:text-white border-gray-400 hover:border-white border-spacing-2 border rounded-md mx-2 md:p-2 md:mx-2 hidden md:block"
                 onClick={logoutHandler}

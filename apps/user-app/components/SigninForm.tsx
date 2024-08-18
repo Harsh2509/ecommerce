@@ -15,6 +15,7 @@ export default function Form() {
     const data = res.data;
     if (data.token !== undefined) {
       window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem("userId", data.userId); // Not the best way to store userId, but it's just for demo purposes
       router.push("/");
     }
   }

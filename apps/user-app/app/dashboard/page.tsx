@@ -22,6 +22,7 @@ export default async function CarouselBasic() {
               title={item.title}
               price={item.price}
               image={item.image}
+              id={item.id}
             ></Card>
           </div>
         ))}
