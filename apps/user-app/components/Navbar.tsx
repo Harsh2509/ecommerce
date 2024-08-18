@@ -1,15 +1,12 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BsCart4 } from "react-icons/bs";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Logo } from "@repo/ui/logo";
 
@@ -26,6 +23,16 @@ export const Navbar = ({
     current: boolean;
   }[];
 }) => {
+  const [token, setToken] = useState<string | null>("");
+  useEffect(() => {
+    setToken(window.localStorage.getItem("token"));
+  }, []);
+
+  function logoutHandler() {
+    window.localStorage.removeItem("token");
+    setToken(null);
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -69,16 +76,34 @@ export const Navbar = ({
               </div>
             </div>
           </div>
-          <Link
-            type="button"
-            className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-            href="/login"
-          >
-            Login
-          </Link>
-          <button className="bg-gray-800 p-1 text-gray-400 hover:text-white border-gray-400 hover:border-white border-spacing-2 border rounded-md mx-2 md:p-2 md:mx-2 hidden md:block">
-            Create an account
-          </button>
+          {token == null && (
+            <>
+              <Link
+                type="button"
+                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                href="/login"
+              >
+                Login
+              </Link>
+              <button className="bg-gray-800 p-1 text-gray-400 hover:text-white border-gray-400 hover:border-white border-spacing-2 border rounded-md mx-2 md:p-2 md:mx-2 hidden md:block">
+                Create an account
+              </button>
+            </>
+          )}
+
+          {token && (
+            <div className=" gap-2 flex">
+              <a>
+                <BsCart4 className=" text-slate-400 hover:text-white text-3xl cursor-pointer" />
+              </a>
+              <button
+                className="bg-gray-800 p-1 text-gray-400 hover:text-white border-gray-400 hover:border-white border-spacing-2 border rounded-md mx-2 md:p-2 md:mx-2 hidden md:block"
+                onClick={logoutHandler}
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

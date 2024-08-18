@@ -30,7 +30,7 @@ export const Home = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button>Shop Now</Button>
+                <Button href="/dashboard">Shop Now</Button>
               </div>
             </div>
           </div>
