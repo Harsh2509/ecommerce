@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { ExtendedCard } from "../../components/ExtendedCard";
 import axios from "axios";
+import { CartSummary } from "../../components/CartSummary";
 
 const navigation = [
   { name: "Cart", href: "/cart", current: true },
@@ -28,6 +29,10 @@ export const CartPage = () => {
   return (
     <div>
       <Navbar navigation={navigation} />
+      <CartSummary
+        totalCost={0}
+        availableCoupons={[{ code: "fyi", discountPercentage: 20 }]}
+      />
       <div className="flex flex-col gap-5">
         {cartItems.map((item) => (
           <ExtendedCard key={item.id} cartItem={item} />

@@ -1,0 +1,17 @@
+{
+  "name": "@repo/store",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "exports": {
+    "./items": "./src/items.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+
+  "dependencies": {
+    "zustand": "^4.5.5"
+  }
+}
