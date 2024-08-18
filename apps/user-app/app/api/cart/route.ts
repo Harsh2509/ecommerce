@@ -59,6 +59,16 @@ export const PUT = async (req: Request) => {
     quantity,
   }: { userId: string; productId: string; quantity: string } = await req.json();
 
+  if (!quantity || parseInt(quantity) <= 0) {
+    return Response.json({ error: "quantity is required" });
+  }
+  if (!productId) {
+    return Response.json({ error: "productId is required" });
+  }
+  if (!userId) {
+    return Response.json({ error: "userId is required" });
+  }
+
   const product = await db
     .select()
     .from(cart)
@@ -84,4 +94,41 @@ export const PUT = async (req: Request) => {
     );
 
   return Response.json({ message: "Quantity updated" });
+};
+
+export const DELETE = async (req: Request) => {
+  const { userId, productId }: { userId: string; productId: string } =
+    await req.json();
+
+  if (!productId) {
+    return Response.json({ error: "productId is required" });
+  }
+  if (!userId) {
+    return Response.json({ error: "userId is required" });
+  }
+
+  const product = await db
+    .select()
+    .from(cart)
+    .where(
+      and(
+        eq(cart.productId, parseInt(productId)),
+        eq(cart.userId, parseInt(userId))
+      )
+    );
+
+  if (product.length == 0) {
+    return Response.json({ error: "Product not found in cart" });
+  }
+
+  await db
+    .delete(cart)
+    .where(
+      and(
+        eq(cart.productId, parseInt(productId)),
+        eq(cart.userId, parseInt(userId))
+      )
+    );
+
+  return Response.json({ message: "Product removed from cart" });
 };

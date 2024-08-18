@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { ExtendedCard } from "@repo/ui/extendedCard";
+import { ExtendedCard } from "../../components/ExtendedCard";
 import axios from "axios";
 
 const navigation = [
